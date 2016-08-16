@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Supplier">
+<!-- 供应商的resultmap -->
+    <resultMap type="com.github.grizz.supplier.bean.Supplier" id="SupplierResult">
+        <id column="ID" jdbcType="INTEGER" property="id" />
+        <result column="NAME" jdbcType="VARCHAR" property="name" />
+        <result column="CODE" jdbcType="VARCHAR" property="code" />
+        <result column="STYPE" jdbcType="VARCHAR" property="stype" />
+        <result column="LARGE" jdbcType="VARCHAR" property="large" />
+        <result column="BTIME" jdbcType="VARCHAR" property="btime" />
+        <result column="ETIME" jdbcType="VARCHAR" property="etime" />
+        <result column="QTIME" jdbcType="VARCHAR" property="qtime" />
+        <result column="DBOSS" jdbcType="VARCHAR" property="dboss" />
+        <result column="XBOSS" jdbcType="VARCHAR" property="xboss" />
+        <result column="ZHUANGTAI" jdbcType="VARCHAR" property="zhuangtai" />
+        <result column="JTYPE" jdbcType="VARCHAR" property="jtype" />
+        <result column="PS" jdbcType="VARCHAR" property="ps" />
+        <result column="REPORT" jdbcType="VARCHAR" property="report" />
+    </resultMap>
+    
+    <!-- 修改供应商 -->
+    <update id="updateOne" parameterType="com.github.grizz.supplier.bean.Supplier">
+        update supplier set name=#{name},code=#{code},jtype=#{jtype},zhuangtai=#{zhuangtai},ps=#{ps},report=#{report},dboss=#{dboss},xboss=#{xboss} where id=#{id}
+    </update>
+    
+    <!-- 添加供应商 -->
+    <insert id="insertOne" parameterType="com.github.grizz.supplier.bean.Supplier">
+        INSERT INTO `supplier` (ID,NAME,CODE,JTYPE,ZHUANGTAI,PS,REPORT,DBOSS,XBOSS) VALUES (#{id},#{name},#{code},#{jtype},#{zhuangtai},#{ps},#{report},#{dboss},#{xboss});
+    </insert>
+    
+    <!-- 查找单挑供应商 -->
+    <select id="selectOneList" parameterType="int" resultMap="SupplierResult">
+        select * from supplier where ID=#{_parameter}
+    </select>
+    
+    <!-- 分页查找 -->
+    <select id="selectAllUsersFenye" resultMap="SupplierResult"
+        parameterType="com.github.grizz.supplier.bean.PageBean">
+          select * from supplier 
+          <where>
+        <if test="nameSearch != null and !&quot;&quot;.equals(nameSearch.trim())">
+            and NAME=#{nameSearch}
+        </if>
+        <if test="codeSearch != null and !&quot;&quot;.equals(codeSearch.trim())">
+            and CODE like '%' #{codeSearch} '%'
+        </if>
+    </where>
+    order by id limit #{beginNumber},#{ps} 
+    </select>
+    
+    <!-- 得到供应商条数 -->
+    <select id="selectCount" resultType="java.lang.Integer" >
+        select count(*) from supplier
+    </select>
+
+</mapper>

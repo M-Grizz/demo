@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>SupplierManagement2</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<!-- shiro权限控制 -->
+	<listener>
+		<listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>shiroEnvironmentClass</param-name>
+		<param-value>org.apache.shiro.web.env.IniWebEnvironment</param-value>
+	</context-param>
+	<context-param>
+		<param-name>shiroConfigLocations</param-name>
+		<param-value>classpath:shiro.ini</param-value>
+	</context-param>
+	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
+	<servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.github.grizz.supplier.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/Login.action</url-pattern>
+    </servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>SListServlet</servlet-name>
+		<servlet-class>com.github.grizz.supplier.servlet.SListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SListServlet</servlet-name>
+		<url-pattern>/SList.action</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>AddServlet</servlet-name>
+		<servlet-class>com.github.grizz.supplier.servlet.AddServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddServlet</servlet-name>
+		<url-pattern>/Add.action</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>OutputServlet</servlet-name>
+		<servlet-class>com.github.grizz.supplier.servlet.OutputServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OutputServlet</servlet-name>
+		<url-pattern>/Output.action</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>InsertOneServlet</servlet-name>
+		<servlet-class>com.github.grizz.supplier.servlet.InsertOneServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InsertOneServlet</servlet-name>
+		<url-pattern>/InsertOneServlet.action</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DetailServlet</servlet-name>
+		<servlet-class>com.github.grizz.supplier.servlet.DetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DetailServlet</servlet-name>
+		<url-pattern>/Detail.action</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UpdateServlet</servlet-name>
+		<servlet-class>com.github.grizz.supplier.servlet.UpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateServlet</servlet-name>
+		<url-pattern>/UpdateServlet.action</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>UpdateOneServlet</servlet-name>
+		<servlet-class>com.github.grizz.supplier.servlet.UpdateOneServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateOneServlet</servlet-name>
+		<url-pattern>/UpdateOneServlet.action</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BossServlet</servlet-name>
+		<servlet-class>com.github.grizz.supplier.servlet.BossServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BossServlet</servlet-name>
+		<url-pattern>/Boss.action</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>OutputServlet</servlet-name>
+		<servlet-class>com.github.grizz.supplier.servlet.OutputServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OutputServlet</servlet-name>
+		<url-pattern>/Output.action</url-pattern>
+	</servlet-mapping>
+
+</web-app>
